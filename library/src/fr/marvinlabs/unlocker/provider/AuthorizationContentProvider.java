@@ -15,19 +15,17 @@ import fr.marvinlabs.unlocker.provider.Authorization.AuthorizationColumns;
 
 public abstract class AuthorizationContentProvider extends ContentProvider {
 
-	public static final String AUTHORITY = "fr.marvinlabs.unlocker";
-
-	private static final String MIME_TYPE = "vnd.android.cursor.item/fr.marvinlabs.unlocker";
-
 	private final Map<Integer, AuthorizationPolicy> authorizationPolicies;
 	private final UriMatcher uriMatcher;
 	private int currentUriType;
 	private boolean debugEnabled;
+	private final String authority;
+	private final String mimeType;
 
 	@Override
 	public String getType(Uri uri) {
 		if (uriMatcher.match(uri) > 0) {
-			return MIME_TYPE;
+			return mimeType;
 		}
 		return null;
 	}
@@ -84,6 +82,10 @@ public abstract class AuthorizationContentProvider extends ContentProvider {
 		return 0;
 	}
 
+	public String getAuthority() {
+		return authority;
+	}
+
 	protected void setOutputDebugInformation(boolean debugEnabled) {
 		this.debugEnabled = debugEnabled;
 	}
@@ -118,8 +120,10 @@ public abstract class AuthorizationContentProvider extends ContentProvider {
 		}
 	}
 
-	protected AuthorizationContentProvider() {
+	protected AuthorizationContentProvider(String authority) {
 		this.authorizationPolicies = new HashMap<Integer, AuthorizationPolicy>();
+		this.authority = authority;
+		this.mimeType = "vnd.android.cursor.item/" + authority;
 
 		// Setup URI matcher
 		this.currentUriType = 0;
@@ -134,7 +138,7 @@ public abstract class AuthorizationContentProvider extends ContentProvider {
 	 */
 	protected void addAuthorizationPolicy(AuthorizationPolicy policy) {
 		++currentUriType;
-		this.uriMatcher.addURI(AUTHORITY, policy.getUriMatcherPath(), currentUriType);
+		this.uriMatcher.addURI(authority, policy.getUriMatcherPath(), currentUriType);
 		authorizationPolicies.put(currentUriType, policy);
 
 		if (debugEnabled)

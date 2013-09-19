@@ -9,8 +9,8 @@ import android.net.Uri;
  */
 public class AuthorizeEverything extends AuthorizePackagePolicy {
 
-	public AuthorizeEverything(String packageName) {
-		super(packageName);
+	public AuthorizeEverything(String packageName, String authority) {
+		super(packageName, authority);
 	}
 
 	@Override
