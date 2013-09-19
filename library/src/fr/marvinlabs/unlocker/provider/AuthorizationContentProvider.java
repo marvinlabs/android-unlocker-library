@@ -1,4 +1,4 @@
-package fr.marvinlabs.authorization.provider;
+package fr.marvinlabs.unlocker.provider;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,13 +11,13 @@ import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.net.Uri;
 import android.util.Log;
-import fr.marvinlabs.authorization.provider.Authorization.AuthorizationColumns;
+import fr.marvinlabs.unlocker.provider.Authorization.AuthorizationColumns;
 
 public abstract class AuthorizationContentProvider extends ContentProvider {
 
-	public static final String AUTHORITY = "fr.marvinlabs.authorization";
+	public static final String AUTHORITY = "fr.marvinlabs.unlocker";
 
-	private static final String MIME_TYPE = "vnd.android.cursor.item/fr.marvinlabs.authorization";
+	private static final String MIME_TYPE = "vnd.android.cursor.item/fr.marvinlabs.unlocker";
 
 	private final Map<Integer, AuthorizationPolicy> authorizationPolicies;
 	private final UriMatcher uriMatcher;

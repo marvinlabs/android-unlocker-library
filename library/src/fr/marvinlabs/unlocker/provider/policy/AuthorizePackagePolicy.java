@@ -1,4 +1,4 @@
-package fr.marvinlabs.authorization.provider.policy;
+package fr.marvinlabs.unlocker.provider.policy;
 
 import java.util.Arrays;
 import java.util.List;
@@ -7,8 +7,8 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.net.Uri;
 import android.net.Uri.Builder;
-import fr.marvinlabs.authorization.provider.AuthorizationContentProvider;
-import fr.marvinlabs.authorization.provider.AuthorizationPolicy;
+import fr.marvinlabs.unlocker.provider.AuthorizationContentProvider;
+import fr.marvinlabs.unlocker.provider.AuthorizationPolicy;
 
 /**
  * Authorize only a given set of features

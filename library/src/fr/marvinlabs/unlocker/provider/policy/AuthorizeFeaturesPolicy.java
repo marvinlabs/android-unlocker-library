@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU Lesser General Public License along with The Android Authorization
  * Library. If not, see http://www.gnu.org/licenses/.
  */
-package fr.marvinlabs.authorization.provider.policy;
+package fr.marvinlabs.unlocker.provider.policy;
 
 import java.util.Arrays;
 
