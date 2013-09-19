@@ -1,4 +1,4 @@
-package fr.marvinlabs.samples.authorization.common;
+package fr.marvinlabs.samples.unlocker.common;
 
 /**
  * Class holding configuration variables for our applications
@@ -7,7 +7,7 @@ package fr.marvinlabs.samples.authorization.common;
  */
 public class Configuration {
 
-	public static final String PACKAGE_NAME = "fr.marvinlabs.samples.authorization";
+	public static final String PACKAGE_NAME = "fr.marvinlabs.samples.unlocker";
 
 	// TODO RELEASE CHECK This should be set to false
 	public static final boolean DEBUG_ENABLED = true;

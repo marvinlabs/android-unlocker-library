@@ -3,13 +3,14 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:versionCode="1"
 	android:versionName="1.0.0"
-	package="fr.marvinlabs.samples.authorization.unlocker"
+	package="fr.marvinlabs.samples.unlocker.unlocker"
 >
 	<!-- We declare a custom permission to protect access to the authorization provider. This permission is also protected to 
 		require the applications to have been signed with the same key (so only us can actually get authorized). -->
 	<permission
-		android:name="fr.marvinlabs.samples.authorization.AUTHORIZATION_PROVIDER"
+		android:name="fr.marvinlabs.samples.unlocker.AUTHORIZATION_PROVIDER"
 		android:protectionLevel="signature" />
+	<uses-sdk android:targetSdkVersion="18" android:minSdkVersion="4"/>
 
 	<application
 		android:icon="@drawable/icon"
@@ -18,8 +19,8 @@
 	>
 		<!-- We expose here our custom authorization provider. This provider requires the permission set above in order to be accessed. -->
 		<provider
-			android:name="fr.marvinlabs.samples.authorization.common.provider.SampleUnlockerProvider"
-			android:authorities="fr.marvinlabs.authorization"
-			android:permission="fr.marvinlabs.samples.authorization.AUTHORIZATION_PROVIDER" />
+			android:name="fr.marvinlabs.samples.unlocker.common.provider.SampleUnlockerProvider"
+			android:authorities="fr.marvinlabs.unlocker"
+			android:permission="fr.marvinlabs.samples.unlocker.AUTHORIZATION_PROVIDER" />
 	</application>
 </manifest>
