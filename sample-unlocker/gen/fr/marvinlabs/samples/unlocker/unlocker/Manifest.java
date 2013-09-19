@@ -9,8 +9,10 @@ package fr.marvinlabs.samples.unlocker.unlocker;
 
 public final class Manifest {
     public static final class permission {
-        /**  We declare a custom permission to protect access to the authorization provider. This permission is also protected to 
-		require the applications to have been signed with the same key (so only us can actually get authorized). 
+        /** 
+         We declare a custom permission to protect access to the authorization provider. This permission is also protected to 
+		require the applications to have been signed with the same key (so only us can actually get authorized).
+    
          */
         public static final String AUTHORIZATION_PROVIDER="fr.marvinlabs.samples.unlocker.AUTHORIZATION_PROVIDER";
     }

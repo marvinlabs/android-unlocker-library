@@ -19,7 +19,7 @@ This whole tutorial assumes we want to create a free application published under
 
 This is the project that will contain the code needed to unlock the features in the free application and also the code that is needed to check if the unlock application is installed or not.
 
-1. Create a class `Configuration` in the package `com.myapp.common`. You can take the sample class provided in the sample-common project. Make sure you replace the `PACKAGE_NAME` constant with your free application's package name. In our case `com.myapp`.
+1. Create a class `Configuration` in the package `com.myapp.common`. You can take the sample class provided in the sample-common project. Make sure you replace the `PACKAGE_NAME` constant with your free application's package name. In our case `com.myapp`. As authority, you can safely use your package name, but you can use anything you want. Just remember to change it accordingly in the UnlockerProvider class constructor and in the manifest file of the unlocker application.
 1. Create an `UnlockerProvider` class in the package `com.myapp.common.provider` that will handle the authorisations. You can take the sample class provided in the sample-common project. This class should extend the `AuthorizationContentProvider` class. This is where you can define how features are made available or not.
 
 That should be it for the code in common for the unlocker and the free application.
@@ -54,7 +54,7 @@ In the end, your manifest file should look like that:
 			android:label="@string/app_name" >
 			<provider
 				android:name="com.myapp.common.provider.UnlockerProvider"
-				android:authorities="fr.marvinlabs.unlocker"
+				android:authorities="com.myapp"
 				android:permission="com.myapp.AUTHORIZATION_PROVIDER" />
 		</application>
 	</manifest>

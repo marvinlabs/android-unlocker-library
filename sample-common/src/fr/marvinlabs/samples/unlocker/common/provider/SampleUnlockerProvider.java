@@ -22,18 +22,19 @@ public class SampleUnlockerProvider extends AuthorizationContentProvider {
 
 	// The policy used by the content provider to authorize at the package level
 	private static final AuthorizationPolicy PACKAGE_LEVEL_POLICY = AuthorizePackagePolicy
-			.newInstance(Configuration.PACKAGE_NAME);
+			.newInstance(Configuration.PACKAGE_NAME, Configuration.PACKAGE_NAME);
 
 	// The policy used by the content provider to authorize at the feature level
 	private static final AuthorizationPolicy FEATURE_LEVEL_POLICY = AuthorizeFeaturesPolicy
 			.newInstanceForAuthorization(Configuration.PACKAGE_NAME,
+					Configuration.PACKAGE_NAME,
 					new String[] { Configuration.MY_LOCKED_FEATURE });
 
 	/**
 	 * Constructor
 	 */
 	public SampleUnlockerProvider() {
-		super();
+		super(Configuration.PACKAGE_NAME);
 		setOutputDebugInformation(Configuration.DEBUG_ENABLED);
 		addAuthorizationPolicy(PACKAGE_LEVEL_POLICY);
 		addAuthorizationPolicy(FEATURE_LEVEL_POLICY);
@@ -47,8 +48,8 @@ public class SampleUnlockerProvider extends AuthorizationContentProvider {
 	 * @return true if the unlock application is installed for our package
 	 */
 	public static boolean getPackageLevelAuthorization(ContentResolver cr) {
-		return getAuthorization(cr,
-				AuthorizePackagePolicy.newInstance(Configuration.PACKAGE_NAME));
+		return getAuthorization(cr, AuthorizePackagePolicy.newInstance(
+				Configuration.PACKAGE_NAME, Configuration.PACKAGE_NAME));
 	}
 
 	/**
@@ -66,6 +67,7 @@ public class SampleUnlockerProvider extends AuthorizationContentProvider {
 			String queriedFeature) {
 		return getAuthorization(cr,
 				AuthorizeFeaturesPolicy.newInstanceForQuery(
-						Configuration.PACKAGE_NAME, queriedFeature));
+						Configuration.PACKAGE_NAME, Configuration.PACKAGE_NAME,
+						queriedFeature));
 	}
 }
