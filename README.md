@@ -1,6 +1,10 @@
+Android Unlocker Library
+========================
+
 Provides a full system to help you develop Android applications that have a free version and some commercial unlocking application. There is also the flexibility for implementing multiple features to be unlocked by various unlocker applications. 
 
-## Getting started
+Getting started
+---------------
 
 This whole tutorial assumes we want to create a free application published under the package name `com.myapp` and an unlocker application published under the package name `com.myapp.unlocker`.
 
@@ -65,23 +69,40 @@ That's it, now you simply need to check whether the user has installed the unloc
 
 	boolean isAuthorized = UnlockerProvider.getPackageLevelAuthorization(getContentResolver());
 
+History
+-------
 
+v1.0 (2013-09-19)
 
+- Added intents to open the app markets
 
+License
+-------
 
+Copyright 2013 Vincent Mimoun-Prat
 
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
 
+    http://www.apache.org/licenses/LICENSE-2.0
 
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
 
+More info
+---------
 
+- Get some more info and other Android tutorials on our blog: [blog.marvinlabs.com][1]
+- Get to know what MarvinLabs does on our website: [www.marvinlabs.com][2]
+- Follow us on social networks:
 
+* [Follow us on Twitter](http://twitter.com/marvinlabs)
+* [Follow us on Google+](https://plus.google.com/u/0/117677945360605555441)
+* [Follow us on Facebook](http://www.facebook.com/studio.marvinlabs)
 
-
-
-
-
-
-
-
-
-
+  [1]: http://blog.marvinlabs.com
+  [2]: http://www.marvinlabs.com
