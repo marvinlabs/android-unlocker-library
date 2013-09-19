@@ -1,4 +1,4 @@
-package fr.marvinlabs.authorization.provider;
+package fr.marvinlabs.unlocker.provider;
 
 import android.net.Uri;
 

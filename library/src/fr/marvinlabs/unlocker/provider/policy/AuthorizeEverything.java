@@ -1,16 +1,16 @@
-package fr.marvinlabs.authorization.provider.policy;
+package fr.marvinlabs.unlocker.provider.policy;
 
 import android.net.Uri;
 
 /**
- * Never authorize anything
+ * Always authorize everything
  * 
  * @author Vincent Prat @ MarvinLabs
  */
-public class AuthorizeNothing extends AuthorizePackagePolicy {
+public class AuthorizeEverything extends AuthorizePackagePolicy {
 
-	public AuthorizeNothing(String packageName) {
-		super(packageName);
+	public AuthorizeEverything(String packageName, String authority) {
+		super(packageName, authority);
 	}
 
 	@Override
@@ -25,6 +25,7 @@ public class AuthorizeNothing extends AuthorizePackagePolicy {
 
 	@Override
 	public boolean isAuthorized(Uri uri, String[] selectionArgs) {
-		return false;
+		return true;
 	}
+
 }

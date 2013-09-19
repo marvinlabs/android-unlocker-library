@@ -1,4 +1,4 @@
-package fr.marvinlabs.authorization.provider.policy;
+package fr.marvinlabs.unlocker.provider.policy;
 
 import java.util.Arrays;
 import java.util.List;
@@ -7,8 +7,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.net.Uri;
 import android.net.Uri.Builder;
-import fr.marvinlabs.authorization.provider.AuthorizationContentProvider;
-import fr.marvinlabs.authorization.provider.AuthorizationPolicy;
+import fr.marvinlabs.unlocker.provider.AuthorizationPolicy;
 
 /**
  * Authorize only a given set of features
@@ -28,8 +27,8 @@ public class AuthorizePackagePolicy implements AuthorizationPolicy {
 	 *            The context from which to extract the package name
 	 * @return The policy
 	 */
-	public static AuthorizePackagePolicy newInstanceFromContext(Context context) {
-		AuthorizePackagePolicy policy = new AuthorizePackagePolicy(context.getPackageName());
+	public static AuthorizePackagePolicy newInstanceFromContext(Context context, String authority) {
+		AuthorizePackagePolicy policy = new AuthorizePackagePolicy(context.getPackageName(), authority);
 		return policy;
 	}
 
@@ -40,8 +39,8 @@ public class AuthorizePackagePolicy implements AuthorizationPolicy {
 	 *            The package we want to authorize
 	 * @return The policy
 	 */
-	public static AuthorizePackagePolicy newInstance(String packageName) {
-		AuthorizePackagePolicy policy = new AuthorizePackagePolicy(packageName);
+	public static AuthorizePackagePolicy newInstance(String packageName, String authority) {
+		AuthorizePackagePolicy policy = new AuthorizePackagePolicy(packageName, authority);
 		return policy;
 	}
 
@@ -80,18 +79,18 @@ public class AuthorizePackagePolicy implements AuthorizationPolicy {
 	/**
 	 * We don't want anybody to instantiate directly the class
 	 */
-	protected AuthorizePackagePolicy(String packageName) {
+	protected AuthorizePackagePolicy(String packageName, String authority) {
 		this.packageName = packageName;
-		this.baseUriBuilder = new Uri.Builder().scheme(ContentResolver.SCHEME_CONTENT)
-				.authority(AuthorizationContentProvider.AUTHORITY).path(packageName);
+		this.baseUriBuilder = new Uri.Builder().scheme(ContentResolver.SCHEME_CONTENT).authority(authority)
+				.path(packageName);
 	}
 
 	@Override
 	public String toString() {
 		final String[] querySelectionArgs = getQuerySelectionArgs();
-		return String
-				.format("%s\nUriMatcher path = %s\nQuery Uri = %s\nSelection Args = %s", getClass().getName(),
-						getUriMatcherPath(), getQueryUri(), querySelectionArgs!=null ? Arrays.toString(querySelectionArgs) : null);
+		return String.format("%s\nUriMatcher path = %s\nQuery Uri = %s\nSelection Args = %s", getClass().getName(),
+				getUriMatcherPath(), getQueryUri(), querySelectionArgs != null ? Arrays.toString(querySelectionArgs)
+						: null);
 	}
 
 }

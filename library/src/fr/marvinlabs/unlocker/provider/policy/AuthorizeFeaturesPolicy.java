@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU Lesser General Public License along with The Android Authorization
  * Library. If not, see http://www.gnu.org/licenses/.
  */
-package fr.marvinlabs.authorization.provider.policy;
+package fr.marvinlabs.unlocker.provider.policy;
 
 import java.util.Arrays;
 
@@ -38,8 +38,9 @@ public class AuthorizeFeaturesPolicy extends AuthorizePackagePolicy {
 	 *            The set of features that are authorized
 	 * @return The policy
 	 */
-	public static AuthorizeFeaturesPolicy newInstanceForAuthorization(String packageName, String[] authorizedFeatures) {
-		AuthorizeFeaturesPolicy policy = new AuthorizeFeaturesPolicy(packageName);
+	public static AuthorizeFeaturesPolicy newInstanceForAuthorization(String packageName, String authority,
+			String[] authorizedFeatures) {
+		AuthorizeFeaturesPolicy policy = new AuthorizeFeaturesPolicy(packageName, authority);
 
 		// The array must be sorted so that we can use the {@link java.util.Arrays#binarySearch(Object[], Object)}
 		// function later on.
@@ -56,8 +57,9 @@ public class AuthorizeFeaturesPolicy extends AuthorizePackagePolicy {
 	 *            The feature we want to authorize
 	 * @return The policy
 	 */
-	public static AuthorizeFeaturesPolicy newInstanceForQuery(String packageName, String queriedFeature) {
-		AuthorizeFeaturesPolicy policy = new AuthorizeFeaturesPolicy(packageName);
+	public static AuthorizeFeaturesPolicy newInstanceForQuery(String packageName, String authority,
+			String queriedFeature) {
+		AuthorizeFeaturesPolicy policy = new AuthorizeFeaturesPolicy(packageName, authority);
 		policy.queriedFeature = queriedFeature;
 		return policy;
 	}
@@ -98,7 +100,7 @@ public class AuthorizeFeaturesPolicy extends AuthorizePackagePolicy {
 	/**
 	 * We don't want anybody to instanciate directly the class
 	 */
-	protected AuthorizeFeaturesPolicy(String packageName) {
-		super(packageName);
+	protected AuthorizeFeaturesPolicy(String packageName, String authority) {
+		super(packageName, authority);
 	}
 }
