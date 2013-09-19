@@ -1,11 +1,11 @@
-package fr.marvinlabs.samples.authorization;
+package fr.marvinlabs.samples.unlocker;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
-import fr.marvinlabs.samples.authorization.common.Configuration;
-import fr.marvinlabs.samples.authorization.common.provider.SampleUnlockerProvider;
+import fr.marvinlabs.samples.unlocker.common.Configuration;
+import fr.marvinlabs.samples.unlocker.common.provider.SampleUnlockerProvider;
 
 public class MainActivity extends Activity {
 
