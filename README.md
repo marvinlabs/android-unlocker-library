@@ -10,7 +10,6 @@ This whole tutorial assumes we want to create a free application published under
 
 ### Create the required projects
 
-1. Import the "library" folder in your workspace as a library project. This is where authorization gets verified.
 1. Create a library project for your application, that will be shared between your free application and the unlocker application. That project should depend on the library project you created in step 1.
 1. Create an application project for the unlocker. That project should depend on the library project you created in step 2.
 1. Create an application project for the free app. That project should depend on the library project you created in step 2.
@@ -19,6 +18,7 @@ This whole tutorial assumes we want to create a free application published under
 
 This is the project that will contain the code needed to unlock the features in the free application and also the code that is needed to check if the unlock application is installed or not.
 
+1. Copy the `android-unlocker-library-1.0.0.jar` file into the libs folder. 
 1. Create a class `Configuration` in the package `com.myapp.common`. You can take the sample class provided in the sample-common project. Make sure you replace the `PACKAGE_NAME` constant with your free application's package name. In our case `com.myapp`. As authority, you can safely use your package name, but you can use anything you want. Just remember to change it accordingly in the UnlockerProvider class constructor and in the manifest file of the unlocker application.
 1. Create an `UnlockerProvider` class in the package `com.myapp.common.provider` that will handle the authorisations. You can take the sample class provided in the sample-common project. This class should extend the `AuthorizationContentProvider` class. This is where you can define how features are made available or not.
 
@@ -72,9 +72,10 @@ That's it, now you simply need to check whether the user has installed the unloc
 History
 -------
 
-v1.0 (2013-09-19)
+v1.0.0 (2013-09-19)
 
-- Added intents to open the app markets
+- Library project added
+- Packaged as a JAR file
 
 License
 -------
