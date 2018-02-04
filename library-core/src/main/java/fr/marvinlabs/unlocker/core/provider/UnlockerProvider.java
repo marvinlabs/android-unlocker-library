@@ -31,7 +31,7 @@ public class UnlockerProvider extends AuthorizationContentProvider {
      */
     public static boolean getPackageLevelAuthorization(Context context) {
         String packageName = context.getPackageName();
-        return getAuthorization(context.getContentResolver(), AuthorizePackagePolicy.newInstance(packageName, packageName));
+        return getPackageLevelAuthorization(context, packageName);
     }
 
     /**
@@ -43,9 +43,33 @@ public class UnlockerProvider extends AuthorizationContentProvider {
      * @return true if the unlock application is installed for our package and
      * it authorizes the given feature
      */
-    public static boolean getFeatureLevelAuthorization(Context context,
-            String queriedFeature) {
+    public static boolean getFeatureLevelAuthorization(Context context, String queriedFeature) {
         String packageName = context.getPackageName();
+        return getFeatureLevelAuthorization(context, packageName, queriedFeature);
+    }
+
+    /**
+     * Call this function to know if the unlocker is installed for our package
+     *
+     * @param context The context
+     * @param packageName    The package name
+     * @return true if the unlock application is installed for our package
+     */
+    public static boolean getPackageLevelAuthorization(Context context, String packageName) {
+        return getAuthorization(context.getContentResolver(), AuthorizePackagePolicy.newInstance(packageName, packageName));
+    }
+
+    /**
+     * Call this function to know if the unlocker installed for our package
+     * authorizes the given feature
+     *
+     * @param context        The context
+     * @param queriedFeature The feature that needs to be authorized
+     * @param packageName    The package name
+     * @return true if the unlock application is installed for our package and
+     * it authorizes the given feature
+     */
+    public static boolean getFeatureLevelAuthorization(Context context, String queriedFeature, String packageName) {
         return getAuthorization(context.getContentResolver(),
                 AuthorizeFeaturesPolicy.newInstanceForQuery(
                         packageName, packageName,
