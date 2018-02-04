@@ -64,12 +64,12 @@ public class UnlockerProvider extends AuthorizationContentProvider {
      * authorizes the given feature
      *
      * @param context        The context
-     * @param queriedFeature The feature that needs to be authorized
      * @param packageName    The package name
+     * @param queriedFeature The feature that needs to be authorized
      * @return true if the unlock application is installed for our package and
      * it authorizes the given feature
      */
-    public static boolean getFeatureLevelAuthorization(Context context, String queriedFeature, String packageName) {
+    public static boolean getFeatureLevelAuthorization(Context context, String packageName, String queriedFeature) {
         return getAuthorization(context.getContentResolver(),
                 AuthorizeFeaturesPolicy.newInstanceForQuery(
                         packageName, packageName,
