@@ -1,0 +1,43 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="fr.marvinlabs.unlocker.demo.unlocker">
+
+    <!-- define the permission -->
+    <permission
+        android:name="fr.marvinlabs.unlocker.demo.AUTHORIZATION_PROVIDER"
+        android:protectionLevel="signature" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round">
+
+        <!-- ************* -->
+        <!-- optional data -->
+        <!-- ************* -->
+
+        <meta-data
+            android:name="unlocker_app_feature_name"
+            android:value="pro" />
+        <meta-data
+            android:name="unlocker_debug"
+            android:value="true" />
+
+        <!-- ************* -->
+        <!-- required data -->
+        <!-- ************* -->
+
+        <!-- the package name of the app that needs to be unlocked -->
+        <meta-data
+            android:name="unlocker_app_package_name"
+            android:value="fr.marvinlabs.unlocker.demo" />
+
+        <!-- the provider with the correct authority, permission and exported flag -->
+        <provider
+            android:name="fr.marvinlabs.unlocker.core.provider.UnlockerProvider"
+            android:authorities="fr.marvinlabs.unlocker.demo"
+            android:exported="true"
+            android:permission="fr.marvinlabs.unlocker.demo.AUTHORIZATION_PROVIDER" />
+
+    </application>
+
+</manifest>
