@@ -36,7 +36,7 @@ dependencies {
 #### The unlocker app
 
 1. Create an unlocker app. No need to add anything to this project, create a complete empty project (no activities or similar).
-2. Add the correct dependency to this project: `implementation 'com.github.marvinlabs.android-unlocker-library:library-core:1.0.0'`
+2. Add the correct dependency to this project: `implementation 'com.github.marvinlabs.android-unlocker-library:library:1.0.0'`
 3. A simply default activity is added to this project by default - define a custom string for `unlocker_info_app` with your apps name for the unlocker apps info string
 4. Adjust the manifest like following (read the comments for explanations)
 
@@ -96,30 +96,31 @@ dependencies {
 
 1. In your app's manifest add following:
 
-    <manifest 
-		<permission
-			android:name="com.my.app.AUTHORIZATION_PROVIDER"
-			android:protectionLevel="signature" />
-			
-	</manifest>
-	
-2. Check the unlocker state like following:
+		<manifest 
+			<permission
+				android:name="com.my.app.AUTHORIZATION_PROVIDER"
+				android:protectionLevel="signature" />
+				
+		</manifest>
+		
+2. Add the correct dependency: `implementation 'com.github.marvinlabs.android-unlocker-library:library-core:1.0.0'`
+3. Check the unlocker state like following:
 
     2.1 Check if the unlocker app is available
   
-	// If the authority is equal to the apps package name, simply pass the context
-	boolean unlockerAppAvailable1 = UnlockerProvider.getPackageLevelAuthorization(context);
-	// otherwise pass the package name to check as well
-	boolean unlockerAppAvailable1 = UnlockerProvider.getPackageLevelAuthorization(context, "com.my.app");
+		// If the authority is equal to the apps package name, simply pass the context
+		boolean unlockerAppAvailable1 = UnlockerProvider.getPackageLevelAuthorization(context);
+		// otherwise pass the package name to check as well
+		boolean unlockerAppAvailable1 = UnlockerProvider.getPackageLevelAuthorization(context, "com.my.app");
 		
     2.2 Check if the unlocker app with a special feature is available
   
-	// the above written example manifest defines a "unlocker_app_feature_name" with the value "pro", so if we want to check this feature this works like following
-	String featureToCheck = "pro"; 
-	// If the authority is equal to the apps package name, simply pass the context + feature
-	boolean unlockerAppAvailable1 = UnlockerProvider.getFeatureLevelAuthorization(context, featureToCheck);
-	// otherwise pass the package name as well to check as well
-	boolean unlockerAppAvailable1 = UnlockerProvider.getPackageLevelAuthorization(context, "com.my.app", featureToCheck);
+		// the above written example manifest defines a "unlocker_app_feature_name" with the value "pro", so if we want to check this feature this works like following
+		String featureToCheck = "pro"; 
+		// If the authority is equal to the apps package name, simply pass the context + feature
+		boolean unlockerAppAvailable1 = UnlockerProvider.getFeatureLevelAuthorization(context, featureToCheck);
+		// otherwise pass the package name as well to check as well
+		boolean unlockerAppAvailable1 = UnlockerProvider.getPackageLevelAuthorization(context, "com.my.app", featureToCheck);
 
 History
 -------
