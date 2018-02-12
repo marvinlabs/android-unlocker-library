@@ -17,7 +17,9 @@ repositories {
 
 ```groovy
 dependencies {
+        // unlocker app
 	implementation 'com.github.marvinlabs.android-unlocker-library:library:1.0.0'
+	// main app
 	implementation 'com.github.marvinlabs.android-unlocker-library:library-core:1.0.0'
 }
 ```
