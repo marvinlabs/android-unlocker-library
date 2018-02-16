@@ -3,71 +3,124 @@ Android Unlocker Library
 
 Provides a full system to help you develop Android applications that have a free version and some commercial unlocking application. There is also the flexibility for implementing multiple features to be unlocked by various unlocker applications. 
 
-Getting started
----------------
+### Gradle (via [JitPack.io](https://jitpack.io/))
 
-This whole tutorial assumes we want to create a free application published under the package name `com.myapp` and an unlocker application published under the package name `com.myapp.unlocker`.
+1. add jitpack to your project's `build.gradle`:
 
-### Create the required projects
+```groovy
+repositories {
+	maven { url "https://jitpack.io" }
+}
+```
 
-1. Create a library project for your application, that will be shared between your free application and the unlocker application. That project should depend on the library project you created in step 1.
-1. Create an application project for the unlocker. That project should depend on the library project you created in step 2.
-1. Create an application project for the free app. That project should depend on the library project you created in step 2.
+2. add the compile statement to your module's `build.gradle`:
 
-### Implement the app's common library project
+```groovy
+dependencies {
+        // unlocker app
+	implementation 'com.github.marvinlabs.android-unlocker-library:library:1.0.0'
+	// main app
+	implementation 'com.github.marvinlabs.android-unlocker-library:library-core:1.0.0'
+}
+```
 
-This is the project that will contain the code needed to unlock the features in the free application and also the code that is needed to check if the unlock application is installed or not.
+### Usage
 
-1. Copy the `android-unlocker-library-1.0.0.jar` file into the libs folder. 
-1. Create a class `Configuration` in the package `com.myapp.common`. You can take the sample class provided in the sample-common project. Make sure you replace the `PACKAGE_NAME` constant with your free application's package name. In our case `com.myapp`. As authority, you can safely use your package name, but you can use anything you want. Just remember to change it accordingly in the UnlockerProvider class constructor and in the manifest file of the unlocker application.
-1. Create an `UnlockerProvider` class in the package `com.myapp.common.provider` that will handle the authorisations. You can take the sample class provided in the sample-common project. This class should extend the `AuthorizationContentProvider` class. This is where you can define how features are made available or not.
+**Assumption**
 
-That should be it for the code in common for the unlocker and the free application.
+* you have an app with the package `com.my.app`
+* you want to create an unlocker app with the package `com.my.app.unlocker`
 
-### Implement the unlocker application
+*Adjust those package names accordingly to fit your requirements*
 
-That one is easy. In fact the unlocker application is nothing more than some icons and a few lines in the `AndroidManifest.xml` file. In that file, we request a permission to access the unlocker's content provider and we will also declare it so that it is available to our free application.
+#### The unlocker app
 
-1. Add the icons in the drawable folders as usual
-1. Name your application properly (usually automatically created in the strings.xml file)
-1. Declare a new permission in the manifest file. You can use the sample declaration from the sample-unlocker project. Just replace the `fr.marvinlabs.samples.unlocker.AUTHORIZATION_PROVIDER` string with your own. In our case, we will name it `com.myapp.AUTHORIZATION_PROVIDER`.
-1. Add the content provider declaration within the `application` tag of the manifest file. You can use the sample declaration from the sample-unlocker project. Just replace the `fr.marvinlabs.samples.unlocker.common.provider.SampleUnlockerProvider` string with your own. In our case, we will name it `com.myapp.common.provider.UnlockerProvider` and also replace the `fr.marvinlabs.samples.unlocker.AUTHORIZATION_PROVIDER` string with your own. In our case, we will name it `com.myapp.AUTHORIZATION_PROVIDER`.
-
-In the end, your manifest file should look like that:
+1. Create an unlocker app. No need to add anything to this project, create a complete empty project (no activities or similar).
+2. Add the correct dependency to this project: `implementation 'com.github.marvinlabs.android-unlocker-library:library:1.0.0'`
+3. A simply default activity is added to this project by default - define a custom string for `unlocker_info_app` with your apps name for the unlocker apps info string
+4. Adjust the manifest like following (read the comments for explanations)
 
 	<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-		package="com.myapp.unlocker"
-		android:versionCode="1"
-		android:versionName="1.0" >
+		android:versionCode="100"
+		android:versionName="1.00"
+		package="com.my.app.unlocker">
 
-		<uses-sdk
-			android:minSdkVersion="14"
-			android:targetSdkVersion="18" />
-
+		<!-- define the permission -->
 		<permission
-			android:name="com.myapp.AUTHORIZATION_PROVIDER"
+			android:name="com.my.app.AUTHORIZATION_PROVIDER"
 			android:protectionLevel="signature" />
 
 		<application
+			android:label="@string/app_name"
 			android:allowBackup="true"
-			android:icon="@drawable/ic_launcher"
-			android:label="@string/app_name" >
+			android:icon="@mipmap/icon"
+			android:roundIcon="@mipmap/icon_round">
+
+			<!-- ************* -->
+			<!-- optional data -->
+			<!-- ************* -->
+
+			<!-- string data - define a feature that you want to check or just leave this meta-data away if you just want to check against the unlocker app at all -->
+			<meta-data
+				android:name="unlocker_app_feature_name"
+				android:value="pro" />
+				
+			<!-- boolean data - set it to true, if you want the unlocker to print it's debug messages, leave it away if not-->
+			<meta-data
+				android:name="unlocker_debug"
+				android:value="true" />
+
+			<!-- ************* -->
+			<!-- required data -->
+			<!-- ************* -->
+
+			<!-- the package name of the app that needs to be unlocked -->
+			<meta-data
+				android:name="unlocker_app_package_name"
+				android:value="com.my.app" />
+
+			<!-- the provider with the correct authority, permission and exported flag -->
 			<provider
-				android:name="com.myapp.common.provider.UnlockerProvider"
-				android:authorities="com.myapp"
-				android:permission="com.myapp.AUTHORIZATION_PROVIDER" />
+				android:name="fr.marvinlabs.unlocker.core.provider.UnlockerProvider"
+				android:authorities="com.my.app"
+				android:exported="true"
+				android:permission="com.my.app.AUTHORIZATION_PROVIDER" />
+
 		</application>
+
 	</manifest>
 
-### Implement the free application
+3. you're done, compile the app and you can already use the unlocker app. *IMPORTANT: you must sign the unlocker app and the app with the same signature!*
 
-This will be where you will want to check if the user has installed the unlocker application. In order for that to work, you will need to:
+#### The main app
 
-1. Request the permission to use the unlock content provider declared in the unlocker. This is done by adding a uses-permission tag in the `AndroidManifest.xml` file. You can use the sample declaration from the sample-locked project. Just replace the permission name with the one you declared in the unlocker project. In our case, we could add the line `<uses-permission android:name="com.myapp.AUTHORIZATION_PROVIDER" />` within the manifest tag. That permission will not show up when the user installs the application because it is not a system-level permission, so no worries.
+1. In your app's manifest add following:
 
-That's it, now you simply need to check whether the user has installed the unlocker application by using such code:
+		<manifest 
+			<permission
+				android:name="com.my.app.AUTHORIZATION_PROVIDER"
+				android:protectionLevel="signature" />
+				
+		</manifest>
+		
+2. Add the correct dependency: `implementation 'com.github.marvinlabs.android-unlocker-library:library-core:1.0.0'`
+3. Check the unlocker state like following:
 
-	boolean isAuthorized = UnlockerProvider.getPackageLevelAuthorization(getContentResolver());
+    3.1 Check if the unlocker app is available
+  
+		// If the authority is equal to the apps package name, simply pass the context
+		boolean unlockerAppAvailable1 = UnlockerProvider.getPackageLevelAuthorization(context);
+		// otherwise pass the package name to check as well
+		boolean unlockerAppAvailable1 = UnlockerProvider.getPackageLevelAuthorization(context, "com.my.app");
+		
+    3.2 Check if the unlocker app with a special feature is available
+  
+		// the above written example manifest defines a "unlocker_app_feature_name" with the value "pro", so if we want to check this feature this works like following
+		String featureToCheck = "pro"; 
+		// If the authority is equal to the apps package name, simply pass the context + feature
+		boolean unlockerAppAvailable1 = UnlockerProvider.getFeatureLevelAuthorization(context, featureToCheck);
+		// otherwise pass the package name as well to check as well
+		boolean unlockerAppAvailable1 = UnlockerProvider.getPackageLevelAuthorization(context, "com.my.app", featureToCheck);
 
 History
 -------
