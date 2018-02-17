@@ -1,4 +1,4 @@
-Android Unlocker Library
+Android Unlocker Library [![Release](https://jitpack.io/v/marvinlabs/android-unlocker-library.svg)](https://jitpack.io/#marvinlabs/android-unlocker-library)
 ========================
 
 Provides a full system to help you develop Android applications that have a free version and some commercial unlocking application. There is also the flexibility for implementing multiple features to be unlocked by various unlocker applications. 
@@ -18,9 +18,9 @@ repositories {
 ```groovy
 dependencies {
         // unlocker app
-	implementation 'com.github.marvinlabs.android-unlocker-library:library:1.0.0'
+	implementation 'com.github.marvinlabs.android-unlocker-library:library:1.0.1'
 	// main app
-	implementation 'com.github.marvinlabs.android-unlocker-library:library-core:1.0.0'
+	implementation 'com.github.marvinlabs.android-unlocker-library:library-core:1.0.1'
 }
 ```
 
