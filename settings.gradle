@@ -1,2 +1,1 @@
-include ':library', ':library-core'
-//, ':demo-app', ':demo-unlocker'
+include ':library', ':library-core', ':demo-app', ':demo-unlocker'
