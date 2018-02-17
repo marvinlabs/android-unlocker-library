@@ -111,16 +111,16 @@ dependencies {
 		// If the authority is equal to the apps package name, simply pass the context
 		boolean unlockerAppAvailable1 = UnlockerProvider.getPackageLevelAuthorization(context);
 		// otherwise pass the package name to check as well
-		boolean unlockerAppAvailable1 = UnlockerProvider.getPackageLevelAuthorization(context, "com.my.app");
+		boolean unlockerAppAvailable2 = UnlockerProvider.getPackageLevelAuthorization(context, "com.my.app");
 		
     3.2 Check if the unlocker app with a special feature is available
   
 		// the above written example manifest defines a "unlocker_app_feature_name" with the value "pro", so if we want to check this feature this works like following
 		String featureToCheck = "pro"; 
 		// If the authority is equal to the apps package name, simply pass the context + feature
-		boolean unlockerAppAvailable1 = UnlockerProvider.getFeatureLevelAuthorization(context, featureToCheck);
+		boolean unlockerAppFeatureAvailable1 = UnlockerProvider.getFeatureLevelAuthorization(context, featureToCheck);
 		// otherwise pass the package name as well to check as well
-		boolean unlockerAppAvailable1 = UnlockerProvider.getPackageLevelAuthorization(context, "com.my.app", featureToCheck);
+		boolean unlockerAppFeatureAvailable2 = UnlockerProvider.getPackageLevelAuthorization(context, "com.my.app", featureToCheck);
 
 History
 -------
