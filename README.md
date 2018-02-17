@@ -36,7 +36,7 @@ dependencies {
 #### The unlocker app
 
 1. Create an unlocker app. No need to add anything to this project, create a complete empty project (no activities or similar).
-2. Add the correct dependency to this project: `implementation 'com.github.marvinlabs.android-unlocker-library:library:1.0.0'`
+2. Add the correct dependency to this project: `implementation 'com.github.marvinlabs.android-unlocker-library:library:1.0.1'`
 3. A simply default activity is added to this project by default - define a custom string for `unlocker_info_app` with your apps name for the unlocker apps info string
 4. Adjust the manifest like following (read the comments for explanations)
 
@@ -103,7 +103,7 @@ dependencies {
 				
 		</manifest>
 		
-2. Add the correct dependency: `implementation 'com.github.marvinlabs.android-unlocker-library:library-core:1.0.0'`
+2. Add the correct dependency: `implementation 'com.github.marvinlabs.android-unlocker-library:library-core:1.0.1'`
 3. Check the unlocker state like following:
 
     3.1 Check if the unlocker app is available
@@ -125,7 +125,7 @@ dependencies {
 History
 -------
 
-v1.0.0 (2013-09-19)
+v1.0.1 (2013-09-19)
 
 - Library project added
 - Packaged as a JAR file
