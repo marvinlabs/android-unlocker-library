@@ -125,7 +125,13 @@ dependencies {
 History
 -------
 
-v1.0.1 (2013-09-19)
+v1.0.1 (2018-02-17)
+
+- full gradle support added
+- jitpack.io release added
+- simplified usage - setup via app manifest meta-data
+
+v1.0.0 (2013-09-19)
 
 - Library project added
 - Packaged as a JAR file
